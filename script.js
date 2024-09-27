@@ -1,13 +1,9 @@
-import { addVote, getVotes } from './votos.js';
-
-// Cargar las categorías y opciones desde el archivo database.json
 fetch('database.json')
   .then(response => response.json())
   .then(data => {
     const categories = data.categories;
     const categoriesList = document.getElementById('categories-list');
 
-    // Mostrar las categorías y opciones en la página
     categories.forEach(category => {
       const categoryElement = document.createElement('li');
       categoryElement.classList.add('category');
@@ -25,20 +21,16 @@ fetch('database.json')
       categoriesList.appendChild(categoryElement);
     });
 
-    // Agregar un evento de clic a cada botón de votación
     document.querySelectorAll('.option button').forEach(button => {
       button.addEventListener('click', (e) => {
         const categoryId = e.target.dataset.categoryId;
         const optionId = e.target.dataset.optionId;
-        addVote(categoryId, optionId);
+        console.log(`Votaste por la opción ${optionId} de la categoría ${categoryId}`);
       });
     });
-  });
 
-// Mostrar los votos actuales
-function showVotes() {
-  const votes = getVotes();
-  console.log(votes);
-}
-
-showVotes();
+    document.querySelectorAll('.option img').forEach(img => {
+      img.addEventListener('click', (e) => {
+        const categoryId = e.target.parentNode.querySelector('button').dataset.categoryId;
+        const optionId = e.target.parentNode.querySelector('button').dataset.optionId;
+        console.log(`Votaste por la opción ${optionId}
