@@ -7,19 +7,19 @@
         {
           "id": 1,
           "name": "Opción 1",
-          "image": "",
+          "image": "https://qu.ax/wUaq.jpg",
           "votes": 0
         },
         {
           "id": 2,
           "name": "Opción 2",
-          "image": "https://example.com/opcion2.jpg",
+          "image": "https://qu.ax/wUaq.jpg",
           "votes": 0
         },
         {
           "id": 3,
           "name": "Opción 3",
-          "image": "https://example.com/opcion3.jpg",
+          "image": "https://qu.ax/wUaq.jpg",
           "votes": 0
         }
       ]
