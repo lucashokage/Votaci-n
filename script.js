@@ -1,36 +1,88 @@
-fetch('database.json')
-  .then(response => response.json())
-  .then(data => {
-    const categories = data.categories;
-    const categoriesList = document.getElementById('categories-list');
+// Función para registrar un usuario
+function registrarUsuario(nombre, gremio, password) {
+    // Enviar solicitud a la base de datos para registrar el usuario
+    fetch('/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            nombre: nombre,
+            gremio: gremio,
+            password: password
+        })
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+}
 
-    categories.forEach(category => {
-      const categoryElement = document.createElement('li');
-      categoryElement.classList.add('category');
-      categoryElement.innerHTML = `
-        <h2>${category.name}</h2>
-        <ul>
-          ${category.options.map(option => `
-            <li class="option">
-              <img src="${option.image}" alt="${option.name}">
-              <button data-category-id="${category.id}" data-option-id="${option.id}">Votar</button>
-            </li>
-          `).join('')}
-        </ul>
-      `;
-      categoriesList.appendChild(categoryElement);
-    });
+// Función para iniciar sesión
+function iniciarSesion(nombre, password) {
+    // Enviar solicitud a la base de datos para iniciar sesión
+    fetch('/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            nombre: nombre,
+            password: password
+        })
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+}
 
-    document.querySelectorAll('.option button').forEach(button => {
-      button.addEventListener('click', (e) => {
-        const categoryId = e.target.dataset.categoryId;
-        const optionId = e.target.dataset.optionId;
-        console.log(`Votaste por la opción ${optionId} de la categoría ${categoryId}`);
-      });
-    });
+// Función para obtener las votaciones
+function obtenerVotaciones() {
+    // Enviar solicitud a la base de datos para obtener las votaciones
+    fetch('/votaciones')
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+}
 
-    document.querySelectorAll('.option img').forEach(img => {
-      img.addEventListener('click', (e) => {
-        const categoryId = e.target.parentNode.querySelector('button').dataset.categoryId;
-        const optionId = e.target.parentNode.querySelector('button').dataset.optionId;
-        console.log(`Votaste por la opción ${optionId}
+// Función para registrar un voto
+function registrarVoto(usuarioId, opcionId) {
+    // Enviar solicitud a la base de datos para registrar el voto
+    fetch('/votar', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            usuarioId: usuarioId,
+            opcionId: opcionId
+        })
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+}
+
+// Eventos para los formularios de registro e inicio de sesión
+document.getElementById('register-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const nombre = document.getElementById('name').value;
+    const gremio = document.getElementById('gremio').value;
+    const password = document.getElementById('password').value;
+    registrarUsuario(nombre, gremio, password);
+});
+
+document.getElementById('login-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const nombre = document.getElementById('name').value;
+    const password = document.getElementById('password').value;
+    iniciarSesion(nombre, password);
+});
+
+// Eventos para las votaciones
+document.getElementById('votaciones-container').addEventListener('click', (e) => {
+    if (e.target.tagName === 'BUTTON' || e.target.tagName === 'IMG') {
+        const usuarioId = // obtener el ID del usuario actual
+        const opcionId = // obtener el ID de la opción seleccionada
+        registrarVoto(usuarioId, opcionId);
+    }
+});
