@@ -11,23 +11,6 @@ header {
     text-align: center;
 }
 
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-}
-
-nav li {
-    margin-right: 20px;
-}
-
-nav a {
-    color: #fff;
-    text-decoration: none;
-}
-
 main {
     display: flex;
     flex-direction: column;
@@ -35,38 +18,99 @@ main {
     padding: 2em;
 }
 
-#votaciones {
-    background-color: #f7f7f7;
-    padding: 2em;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-#categories-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-#categories-list li {
-    margin-bottom: 20px;
-}
-
-.category {
-    background-color: #fff;
+section {
+    background-color: #f9f9f9;
     padding: 1em;
-    border: 1px solid #ddd;
-    border-radius: 10px;
+    margin-bottom: 1em;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.category h2 {
-    font-weight: bold;
+h1, h2 {
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 1em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+}
+
+input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    padding: 1em 2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #555;
+}
+
+.registro {
+    background-image: url('images/fondo-registro.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.votaciones {
+    background-image: url('images/fondo-votaciones.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+:root {
+    --color-texto-principal: #333;
+    --color-texto-secundario: #666;
+    --color-fondo: #f9f9f9;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: var(--color-texto-principal);
+    background-color: var(--color-fondo);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-texto-secundario);
+}
+
+a {
+    color: var(--color-texto-principal);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--color-texto-secundario);
+}
+
+.votacion {
+    margin-bottom: 1em;
+}
+
+.votacion h3 {
     margin-top: 0;
 }
 
-.option {
-    display: flex;
-    align-items: center;
-   
+.votacion ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.votacion li {
+    margin-bottom: 0.5em;
+}
+
+.votacion input[type="radio"] {
+    margin-right: 0.5em;
+}
