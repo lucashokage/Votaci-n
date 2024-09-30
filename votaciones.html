@@ -6,16 +6,43 @@
     <title>Votaciones - Votaciones Teikoku</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="votaciones">
     <header>
         <h1>Votaciones Teikoku</h1>
     </header>
     <main>
         <section>
             <h2>Votaciones</h2>
-            <div id="votaciones-container"></div>
+            <div id="votaciones-container">
+                <!-- Aquí se mostrarán las votaciones -->
+            </div>
         </section>
     </main>
     <script src="script.js"></script>
+    <script>
+        // Obtener las votaciones desde la base de datos
+        fetch('/votaciones')
+        .then(response => response.json())
+        .then(data => {
+            const votacionesContainer = document.getElementById('votaciones-container');
+            data.forEach(votacion => {
+                const votacionHTML = `
+                    <div class="votacion">
+                        <h3>${votacion.name}</h3>
+                        <ul>
+                            ${votacion.options.map(option => `
+                                <li>
+                                    <input type="radio" id="${option.id}" name="${votacion.id}" value="${option.id}">
+                                    <label for="${option.id}">${option.name}</label>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+                votacionesContainer.innerHTML += votacionHTML;
+            });
+        })
+        .catch(error => console.error(error));
+    </script>
 </body>
 </html>
