@@ -79,10 +79,11 @@ document.getElementById('login-form').addEventListener('submit', (e) => {
 });
 
 // Eventos para las votaciones
-document.getElementById('votaciones-container').addEventListener('click', (e) => {
-    if (e.target.tagName === 'BUTTON' || e.target.tagName === 'IMG') {
+document.addEventListener('click', (e) => {
+    if (e.target.tagName === 'INPUT' && e.target.type === 'radio') {
+        const votacionId = e.target.name;
+        const opcionId = e.target.id;
         const usuarioId = // obtener el ID del usuario actual
-        const opcionId = // obtener el ID de la opción seleccionada
         registrarVoto(usuarioId, opcionId);
     }
 });
